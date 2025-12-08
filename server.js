@@ -18,9 +18,11 @@ mongoose
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import txRoutes from "./routes/transactions.js";
+import classRoutes from "./routes/classes.js";   
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/transactions", txRoutes);
+app.use("/api/classes", classRoutes);            
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5005, () => console.log("Server running on port 5005"));
