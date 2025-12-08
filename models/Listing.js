@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ListingSchema = new mongoose.Schema({
   class: {
@@ -24,4 +24,4 @@ const ListingSchema = new mongoose.Schema({
 
 ListingSchema.index({ class: 1, isActive: 1 });
 
-module.exports = mongoose.model("Listing", ListingSchema);
+export default mongoose.model("Listing", ListingSchema);

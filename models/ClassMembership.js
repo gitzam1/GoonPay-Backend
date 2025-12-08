@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ClassMembershipSchema = new mongoose.Schema({
   class: {
@@ -30,4 +30,4 @@ ClassMembershipSchema.index({ user: 1 });
 // For class member lists by role
 ClassMembershipSchema.index({ class: 1, role: 1 });
 
-module.exports = mongoose.model("ClassMembership", ClassMembershipSchema);
+export default mongoose.model("ClassMembership", ClassMembershipSchema);

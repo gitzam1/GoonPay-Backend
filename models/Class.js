@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ClassSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -14,4 +14,4 @@ const ClassSchema = new mongoose.Schema({
 
 ClassSchema.index({ code: 1 }, { unique: true });
 
-module.exports = mongoose.model("Class", ClassSchema);
+export default mongoose.model("Class", ClassSchema);
