@@ -1,11 +1,27 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const TransactionSchema = new mongoose.Schema({
-  from: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  from: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
   to: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  amount: Number,
+
+  amount: { type: Number, required: true },
   note: String,
+
+  type: {
+    type: String,
+    enum: ["transfer", "reward", "purchase"],
+    default: "transfer"
+  },
+
+  class: { type: mongoose.Schema.Types.ObjectId, ref: "Class" },
+
+  listing: { type: mongoose.Schema.Types.ObjectId, ref: "Listing" },
+
   timestamp: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("Transaction", TransactionSchema);
+TransactionSchema.index({ class: 1, timestamp: -1 });
+TransactionSchema.index({ to: 1, class: 1 });
+TransactionSchema.index({ from: 1, class: 1 });
+
+module.exports = mongoose.model("Transaction", TransactionSchema);
